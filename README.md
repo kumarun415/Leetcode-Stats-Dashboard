@@ -68,3 +68,33 @@ Leetcode-Stats-Dashboard/
 │
 ├── .gitignore
 └── README.md
+
+
+---
+
+## 🌐 Live Demo
+
+🚧 Live demo coming soon.
+
+The application is currently being prepared for deployment.
+
+---
+
+## 📸 Screenshots
+
+### Dashboard
+
+The dashboard provides an overview of LeetCode problem-solving progress, difficulty distribution, coding activity, streak, and CodePulse Score.
+
+### Invalid Username Handling
+
+The application displays a clear error message when an invalid LeetCode username is entered.
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/kumarun415/Leetcode-Stats-Dashboard.git
