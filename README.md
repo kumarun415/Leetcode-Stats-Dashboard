@@ -1,6 +1,17 @@
 # 📊 LeetCode Stats Dashboard
 
-A full-stack web application that allows users to search for a LeetCode username and view their coding progress, problem-solving statistics, activity, and custom CodePulse score in one place.
+> A full-stack developer analytics dashboard that fetches real-time LeetCode data and transforms it into a clean, visual, and easy-to-understand coding profile.
+
+🚀 **Live Demo:**  
+https://leetcode-stats-dashboard-frontend.onrender.com
+
+---
+
+## ✨ Overview
+
+**LeetCode Stats Dashboard** is a full-stack web application built with React.js, Node.js, and Express.js.
+
+It allows users to search for a LeetCode username and view their coding progress, problem-solving statistics, difficulty distribution, coding streak, recent activity, custom CodePulse Score, and coding activity heatmap — all in one place.
 
 ---
 
@@ -16,10 +27,60 @@ A full-stack web application that allows users to search for a LeetCode username
 - 📅 Last 7 days activity
 - 📆 Last 30 days activity
 - 🚀 Custom CodePulse Score
-- 🟩 Coding activity heatmap
-- ❌ Proper error handling for invalid usernames
+- 🟩 84-day coding activity heatmap
+- ❌ Invalid username error handling
+- ⚠️ Empty username validation
 - ⚡ Real-time data fetched from LeetCode
 - 📱 Responsive dashboard UI
+
+---
+
+## 🖥️ Live Demo
+
+🌐 **Live Website:**  
+https://leetcode-stats-dashboard-frontend.onrender.com
+
+The application is deployed and ready to use.
+
+Enter a valid LeetCode username and click **Search** to view the user's coding statistics.
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Dashboard
+
+Main dashboard showing the username search interface and LeetCode statistics.
+
+![LeetCode Stats Dashboard](screenshots/dashboard.png)
+
+---
+
+### 📊 Analytics
+
+Difficulty distribution and CodePulse activity analytics.
+
+![LeetCode Analytics](screenshots/analytics.png)
+
+---
+
+### 🟩 Coding Activity Heatmap
+
+An 84-day contribution-style heatmap showing the user's coding activity.
+
+![Coding Activity Heatmap](screenshots/heatmap.png)
+
+---
+
+### ❌ Invalid Username Handling
+
+The application displays a clear error message when an invalid LeetCode username is entered.
+
+![Invalid Username](screenshots/invalid-user.png)
+
+```text
+LeetCode username not found
+```
 
 ---
 
@@ -27,22 +88,27 @@ A full-stack web application that allows users to search for a LeetCode username
 
 ### Frontend
 
-- React.js
-- JavaScript
-- HTML5
-- CSS3
-- Vite
+- ⚛️ React.js
+- 🟨 JavaScript
+- 🌐 HTML5
+- 🎨 CSS3
+- ⚡ Vite
 
 ### Backend
 
-- Node.js
-- Express.js
-- JavaScript
-- REST API
+- 🟢 Node.js
+- 🚂 Express.js
+- 🟨 JavaScript
+- 🔌 REST API
 
 ### Data Source
 
-- LeetCode GraphQL API
+- 🟡 LeetCode GraphQL API
+
+### Deployment
+
+- Frontend → Render Static Site
+- Backend → Render Web Service
 
 ---
 
@@ -66,36 +132,171 @@ Leetcode-Stats-Dashboard/
 │   ├── package.json
 │   └── package-lock.json
 │
+├── screenshots/
+│   ├── dashboard.png
+│   ├── analytics.png
+│   ├── heatmap.png
+│   └── invalid-user.png
+│
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 🌐 Live Demo
+## ⚙️ How It Works
 
-🚀 **Live Website:** https://leetcode-stats-dashboard-frontend.onrender.com
+```text
+User
+  │
+  ▼
+React Frontend
+  │
+  │ HTTP Request
+  ▼
+Node.js + Express Backend
+  │
+  │ GraphQL Request
+  ▼
+LeetCode API
+  │
+  ▼
+User Statistics
+  │
+  ▼
+Backend Response
+  │
+  ▼
+React Dashboard
+```
 
-The application is live and can be used to search and analyze LeetCode user statistics.
+### Data Flow
+
+1. User enters a LeetCode username.
+2. React sends the username to the backend.
+3. Express receives the request.
+4. Backend queries the LeetCode GraphQL API.
+5. LeetCode returns user statistics and activity data.
+6. Backend sends the required data to the frontend.
+7. React displays the information in the dashboard.
 
 ---
 
-## 📸 Screenshots
+## 📊 Dashboard Information
 
-### Dashboard
+### Problem Statistics
 
-The dashboard provides an overview of:
+The dashboard displays:
 
-- LeetCode problem-solving progress
+| Statistic | Description |
+|---|---|
+| Total Solved | Total number of solved problems |
+| Easy | Easy problems solved |
+| Medium | Medium problems solved |
+| Hard | Hard problems solved |
+
+---
+
+### 📈 Difficulty Distribution
+
+The dashboard calculates the percentage distribution of solved problems across:
+
+- 🟢 Easy
+- 🟠 Medium
+- 🔴 Hard
+
+The distribution is calculated based on the total number of solved problems.
+
+---
+
+### 🔥 Coding Streak
+
+The dashboard displays the user's current coding streak in days.
+
+---
+
+### 🚀 CodePulse Score
+
+**CodePulse Score** is a custom activity-based metric created specifically for this project.
+
+It considers:
+
+- Current coding streak
+- Last 7 days activity
+- Last 30 days activity
+
+The score is displayed out of:
+
+```text
+100 / 100
+```
+
+> **Note:** CodePulse Score is a custom metric created for this project and is not an official LeetCode score.
+
+---
+
+### 🟩 Coding Activity Heatmap
+
+The dashboard visualizes coding activity over the most recent **84 days**.
+
+Different shades represent different levels of coding activity.
+
+Hovering over a heatmap cell displays the corresponding date and submission count.
+
+---
+
+## 🔌 API
+
+The backend exposes the following endpoint:
+
+```http
+GET /api/leetcode/:username
+```
+
+### Example
+
+```text
+http://localhost:5000/api/leetcode/arun-k____2311
+```
+
+The endpoint fetches LeetCode user statistics and activity data and returns the required information to the frontend.
+
+---
+
+## 🧪 Testing
+
+The application has been tested with valid, invalid, and empty username inputs.
+
+### ✅ Valid Username
+
+```text
+arun-k____2311
+```
+
+The dashboard successfully displays:
+
+- Total problems solved
+- Easy problems
+- Medium problems
+- Hard problems
 - Difficulty distribution
-- Coding streak
-- Recent activity
+- Current coding streak
+- Last 7 days activity
+- Last 30 days activity
 - CodePulse Score
 - Coding activity heatmap
 
-### Invalid Username Handling
+---
 
-The application displays a clear error message when an invalid LeetCode username is entered:
+### ❌ Invalid Username
+
+Example:
+
+```text
+xyz_invalid_123456789
+```
+
+Expected result:
 
 ```text
 LeetCode username not found
@@ -103,9 +304,19 @@ LeetCode username not found
 
 ---
 
-## ⚙️ Installation
+### ⚠️ Empty Username
 
-### 1. Clone the Repository
+When the search field is empty:
+
+```text
+Please enter a LeetCode username
+```
+
+---
+
+## 💻 Run Locally
+
+### 1. Clone Repository
 
 ```bash
 git clone https://github.com/kumarun415/Leetcode-Stats-Dashboard.git
@@ -119,7 +330,7 @@ cd Leetcode-Stats-Dashboard
 
 ---
 
-## ▶️ Run Backend
+## ▶️ Backend Setup
 
 Open a terminal and navigate to the backend folder:
 
@@ -133,10 +344,10 @@ Install dependencies:
 npm install
 ```
 
-Start the backend server:
+Start the backend:
 
 ```bash
-node server.js
+npm start
 ```
 
 Backend will run on:
@@ -147,9 +358,9 @@ http://localhost:5000
 
 ---
 
-## ▶️ Run Frontend
+## ▶️ Frontend Setup
 
-Open another terminal and navigate to the frontend folder:
+Open another terminal:
 
 ```bash
 cd frontend
@@ -161,97 +372,78 @@ Install dependencies:
 npm install
 ```
 
-Start the development server:
+Start the Vite development server:
 
 ```bash
 npm run dev
 ```
 
-Then open the local URL provided by Vite in your browser.
+Vite will provide a local development URL in the terminal.
 
 ---
 
-## 🔌 API Endpoint
+## 🔐 Environment Variables
 
-The backend provides the following API:
+The frontend uses an environment variable for the backend API URL.
 
-```text
-GET /api/leetcode/:username
-```
-
-Example:
+Create this file:
 
 ```text
-http://localhost:5000/api/leetcode/arun-k____2311
+frontend/.env
 ```
 
-The backend fetches LeetCode user statistics and activity data and sends the required information to the frontend.
+Add:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+For production deployment, `VITE_API_URL` should point to the deployed backend.
+
+> `.env` files should not be committed to GitHub.
 
 ---
 
-## 📊 Dashboard Information
+## 🌐 Deployment
 
-### Problem Statistics
+The project is deployed using Render.
 
-The dashboard displays:
+### Backend
 
-- Total problems solved
-- Easy problems
-- Medium problems
-- Hard problems
+```text
+Platform: Render
+Service: Web Service
+Root Directory: backend
+Build Command: npm install
+Start Command: npm start
+```
 
-### Difficulty Distribution
+### Frontend
 
-Displays the percentage distribution of solved problems across:
+```text
+Platform: Render
+Service: Static Site
+Root Directory: frontend
+Build Command: npm install && npm run build
+Publish Directory: dist
+```
 
-- Easy
-- Medium
-- Hard
+The frontend communicates with the deployed backend through:
 
-### CodePulse Activity
-
-The dashboard calculates a custom CodePulse Score using:
-
-- Current coding streak
-- Last 7 days activity
-- Last 30 days activity
-
-The score is displayed out of 100.
-
-> CodePulse Score is a custom metric created for this project and is not an official LeetCode score.
-
-### Coding Activity Heatmap
-
-A contribution-style heatmap visualizes the user's coding activity over the recent activity period.
+```text
+VITE_API_URL
+```
 
 ---
 
-## 🧪 Testing
+## 📱 Responsive Design
 
-The application has been tested with both valid and invalid LeetCode usernames.
+The dashboard is designed to work across different screen sizes:
 
-### Valid Username
-
-```text
-arun-k____2311
-```
-
-The dashboard successfully displays the user's:
-
-- Problem statistics
-- Difficulty distribution
-- Coding streak
-- Recent activity
-- CodePulse Score
-- Coding activity heatmap
-
-### Invalid Username
-
-For an invalid username, the application displays:
-
-```text
-LeetCode username not found
-```
+- 🖥️ Desktop
+- 💻 Laptop
+- 📱 Mobile
+- 📲 Tablet
 
 ---
 
@@ -265,17 +457,51 @@ LeetCode username not found
 - 📄 PDF Export
 - 🔗 Shareable Profile
 - 📈 Historical Analytics
+- 🏅 Achievement System
+- 📊 Advanced Activity Charts
+- 🔔 Progress Notifications
+
+---
+
+## 📌 Project Status
+
+| Component | Status |
+|---|---|
+| Frontend | ✅ Completed |
+| Backend | ✅ Completed |
+| LeetCode API | ✅ Integrated |
+| Error Handling | ✅ Completed |
+| Responsive UI | ✅ Completed |
+| Screenshots | ✅ Added |
+| Deployment | ✅ Live |
 
 ---
 
 ## 👨‍💻 Author
 
-**Arun Kumar**
+### Arun Kumar
 
-B.Tech Information Technology Student
+**B.Tech Information Technology Student**
+
+Interested in:
+
+- Full-Stack Development
+- React.js
+- Node.js
+- JavaScript
+- Data Structures & Algorithms
+- Problem Solving
 
 ---
 
 ## ⭐ Support
 
-If you like this project, consider giving the repository a ⭐ on GitHub.
+If you found this project useful or interesting, consider giving the repository a ⭐ on GitHub.
+
+Your support is appreciated! ❤️
+
+---
+
+## 📄 License
+
+This project is created for learning, portfolio, and educational purposes.
