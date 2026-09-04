@@ -22,26 +22,29 @@ function App() {
     setStats(null);
 
     try {
-      const response = await fetch(
-        `http://localhost:5000/api/leetcode/${encodeURIComponent(
-          username.trim()
-        )}`
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-  throw new Error(
-    data.message || "Unable to find this LeetCode username"
+  const response = await fetch(
+    `${import.meta.env.VITE_API_URL}/api/leetcode/${encodeURIComponent(
+      username.trim()
+    )}`
   );
-}
-      setStats(data);
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      data.message || "Unable to find this LeetCode username"
+    );
+  }
+
+  setStats(data);
+
+} catch (error) {
+  setError(error.message);
+
+} finally {
+  setLoading(false);
+  }
+};
 
   // ==============================
   // Get Problem Count
@@ -246,46 +249,86 @@ function App() {
       <div className="container">
 
         {/* =========================
-            Header
-        ========================= */}
+    Premium Hero Section
+========================= */}
 
-        <h1>
-          LeetCode Stats Dashboard
-        </h1>
+<div className="hero-section">
 
-        <p className="subtitle">
-          Track your LeetCode progress in one place.
-        </p>
+  <div className="hero-badge">
+    <span>⚡</span>
+    <span>Developer Analytics</span>
+  </div>
 
-        {/* =========================
-            Search
-        ========================= */}
+  <h1>
+    LeetCode <span>Stats</span> Dashboard
+  </h1>
 
-        <div className="search-box">
+  <p className="subtitle">
+    Track your coding journey, analyze your progress,
+    and stay consistent.
+  </p>
 
-          <input
-            type="text"
-            placeholder="Enter LeetCode username"
-            value={username}
-            onChange={(e) =>
-              setUsername(e.target.value)
-            }
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSearch();
-              }
-            }}
-          />
+  <div className="search-box">
 
-          <button
-            onClick={handleSearch}
-            disabled={loading}
-          >
-            {loading ? "Loading..." : "Search"}
-          </button>
+    <div className="input-wrapper">
+      <span className="search-icon">⌕</span>
 
-        </div>
+      <input
+        type="text"
+        placeholder="Enter your LeetCode username"
+        value={username}
+        onChange={(e) =>
+          setUsername(e.target.value)
+        }
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            handleSearch();
+          }
+        }}
+      />
+    </div>
 
+    <button
+      onClick={handleSearch}
+      disabled={loading}
+    >
+      {loading ? "Loading..." : "Search →"}
+    </button>
+
+  </div>
+
+  <div className="hero-features">
+
+    <div className="hero-feature">
+      <span>📊</span>
+
+      <div>
+        <strong>Smart Stats</strong>
+        <small>Detailed insights</small>
+      </div>
+    </div>
+
+    <div className="hero-feature">
+      <span>🔥</span>
+
+      <div>
+        <strong>Track Streak</strong>
+        <small>Stay consistent</small>
+      </div>
+    </div>
+
+    <div className="hero-feature">
+      <span>📅</span>
+
+      <div>
+        <strong>Activity</strong>
+        <small>84-day heatmap</small>
+      </div>
+    </div>
+
+  </div>
+
+</div>
         {/* =========================
             Error
         ========================= */}
@@ -550,72 +593,64 @@ function App() {
             {/* =====================
                 Activity Heatmap
             ===================== */}
+      <div className="heatmap-section">
 
-            <div className="heatmap-section">
+        <h2>
+          📅 Coding Activity
+        </h2>
 
-              <h2>
-                📅 Coding Activity
-              </h2>
+        <p className="heatmap-subtitle">
+          Your coding activity over the last 84 days
+        </p>
 
-              <p className="heatmap-subtitle">
-                Your coding activity over the
-                last 84 days
-              </p>
+        <div className="heatmap">
 
-              <div className="heatmap">
+          {heatmapData.map((day, index) => {
 
-                {heatmapData.map(
-                  (day, index) => {
+            const level = getHeatmapLevel(day.count);
 
-                    const level =
-                      getHeatmapLevel(
-                        day.count
-                      );
+            return (
+              <div
+                key={index}
+                className={`heatmap-cell level-${level}`}
+                title={`${day.date}: ${day.count} submissions`}
+              ></div>
+            );
 
-                    return (
-                      <div
-                        key={index}
-                        className={`heatmap-cell level-${level}`}
-                        title={`${day.date}: ${day.count} submissions`}
-                      ></div>
-                    );
-                  }
-                )}
+          })}
 
-              </div>
+        </div>
 
-              {/* Legend */}
+        {/* Legend */}
 
-              <div className="heatmap-legend">
+        <div className="heatmap-legend">
 
-                <span>
-                  Less
-                </span>
+          <span>
+            Less
+          </span>
 
-                <div className="legend-cell level-0"></div>
+          <div className="legend-cell level-0"></div>
+          <div className="legend-cell level-1"></div>
+          <div className="legend-cell level-2"></div>
+          <div className="legend-cell level-3"></div>
+          <div className="legend-cell level-4"></div>
 
-                <div className="legend-cell level-1"></div>
+          <span>
+            More
+          </span>
 
-                <div className="legend-cell level-2"></div>
-
-                <div className="legend-cell level-3"></div>
-
-                <div className="legend-cell level-4"></div>
-
-                <span>
-                  More
-                </span>
-
-              </div>
-
-            </div>
-
-          </div>
-        )}
+        </div>
 
       </div>
+
     </div>
-  );
+  )}
+
+  </div>
+
+</div>
+);
+
 }
 
 export default App;
