@@ -74,9 +74,9 @@ Leetcode-Stats-Dashboard/
 
 ## 🌐 Live Demo
 
-🚧 Live demo coming soon.
+🚀 **Live Website:** https://leetcode-stats-dashboard-frontend.onrender.com
 
-The application is currently being prepared for deployment.
+The application is live and can be used to search and analyze LeetCode user statistics.
 
 ---
 
@@ -182,7 +182,7 @@ GET /api/leetcode/:username
 Example:
 
 ```text
-http://localhost:5000/api/leetcode/arun-k____231
+http://localhost:5000/api/leetcode/arun-k____2311
 ```
 
 The backend fetches LeetCode user statistics and activity data and sends the required information to the frontend.
